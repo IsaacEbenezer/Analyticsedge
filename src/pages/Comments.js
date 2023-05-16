@@ -21,10 +21,15 @@ const Comments = () => {
   }));
 
   return (
-    <div>
-      <h1>Comments</h1>
-      <DataGrid columns={columns} data={data} />
+    <div className="w-full">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl text-center mt-4">Comments</h1>
+    <div className="overflow-x-auto">
+      <div className="w-full">
+        <DataGrid columns={columns} data={data} />
+      </div>
     </div>
+  </div>
+  
   );
 };
 

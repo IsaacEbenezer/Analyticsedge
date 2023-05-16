@@ -31,15 +31,18 @@ const Users = () => {
   }));
 
   return (
-    <div>
-      <h1>Users</h1>
+    <div className="w-full">
+    <h1 className="text-2xl sm:text-3xl md:text-4xl text-center mt-4">Users</h1>
+    <div className="overflow-x-auto">
       <DataGrid
         columns={columns}
         data={data}
         pageSize={pageSize}
-        onPageSizeChange={handlePageSizeChange} // Pass the function as a prop
+        onPageSizeChange={handlePageSizeChange}
       />
     </div>
+  </div>
+  
   );
 };
 
