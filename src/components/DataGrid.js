@@ -79,7 +79,7 @@ const DataGrid = ({ columns, data }) => {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <span className="text-lg font-serif">Page Size: </span>
       <select
         value={pageSize}
@@ -91,31 +91,28 @@ const DataGrid = ({ columns, data }) => {
         <option value="20">20</option>
       </select>
       <br />
-      <div className="mt-4 flex">
+      <div className="mt-4 flex flex-wrap">
         <input
           type="text"
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
           placeholder="Search..."
-          className="px-2 py-1 rounded bg-gray-200"
+          className="px-2 py-1 rounded bg-gray-200 mb-2 sm:mb-0"
         />
         <button
           onClick={handleSearch}
-          className="px-3 py-1 ml-2 rounded bg-gray-500 text-gray-800 hover:bg-gray-600 hover:text-white"
+          className="px-3 py-1 ml-0 sm:ml-2 rounded bg-gray-500 text-gray-800 hover:bg-gray-600 hover:text-white"
         >
           Search
         </button>
       </div>
-      <table className="mt-4">
+      <table className="mt-4 w-full">
         <thead>
-           <tr>
+          <tr>
             {columns.map((column) => (
               <th key={column} className="border px-4 py-2">
                 {column}
-                <button
-                  onClick={() => handleSort(column)}
-                  className="ml-2"
-                >
+                <button onClick={() => handleSort(column)} className="ml-2">
                   {sortKey === column && sortDirection === "asc" ? (
                     <span>&uarr;</span>
                   ) : (
@@ -138,27 +135,27 @@ const DataGrid = ({ columns, data }) => {
           ))}
         </tbody>
       </table>
-      <div className="bg-gray-500 mt-4 flex justify-center overflow-x-auto">
-        <div className="bg-gray-500 mt-4 flex flex-wrap justify-center">
-          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-            (page) => (
-              <button
-                key={page}
-                onClick={() => handlePageChange(page)}
-                disabled={currentPage === page}
-                className={`px-3 py-1 mx-1 mb-2 rounded ${
-                  currentPage === page
-                    ? "bg-gray-700 text-white"
-                    : "bg-gray-500 text-gray-800 hover:bg-gray-600 hover:text-white"
-                }`}
-              >
-                {page}
-              </button>
-            )
-          )}
-        </div>
-      </div>
+      <div className="bg-gray-500 mt-4 flex flex-wrap justify-center">
+  {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+    <button
+      key={page}
+      onClick={() => handlePageChange(page)}
+      disabled={currentPage === page}
+      className={`px-3 py-1 mx-1 mb-2 rounded ${
+        currentPage === page
+          ? "bg-gray-700 text-white"
+          : "bg-gray-500 text-gray-800 hover:bg-gray-600 hover:text-white"
+      }`}
+    >
+      {page}
+    </button>
+  ))}
+</div>
+
+
+
     </div>
   );
+  
 };
 export default DataGrid;
